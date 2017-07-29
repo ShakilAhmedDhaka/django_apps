@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from .models import User
 
 from .forms import SignUpSmall,ExampleForm,ButtonForm
@@ -24,6 +25,7 @@ def example_multi_form(request):
 	if request.method == 'POST':
 		small_form = SignUpSmall(request.POST)
 		example_form = ExampleForm(request.POST)
+		button_form  = ButtonForm(request.POST)
 	else:
 		small_form = SignUpSmall()
 		example_form = ExampleForm()
@@ -40,19 +42,16 @@ def signup_small(request):
 		if form.is_valid():
 			try:
 				user=User()           
-				user.first_name=request.POST['first_name']
-				user.last_name=request.POST['last_name']
-				user.user_id=request.POST['user_id']
-				user.email_id=request.POST['email_id']
+				user.user_id=request.POST['user']
+				user.email_id=request.POST['email']
 				user.password=request.POST['passwd']
 				user.save()
 			except:
-				return HttpResponse('failed')
+				return HttpResponse('database error')
 			else:
-				return HttpResponseRedirect("success")
+				return redirect('form:success')
 	else:
 		form = SignUpSmall()
-	
 
 	return render(request,'form/signup_small.html',{'form':form})
 

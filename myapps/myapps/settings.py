@@ -27,12 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Application definition
 
 INSTALLED_APPS = [
-    'bootstrap3',
+    'widget_tweaks',
     'crispy_forms',
     'form.apps.FormConfig',
     'django.contrib.admin',
@@ -73,6 +72,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myapps.wsgi.application'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
@@ -84,7 +85,7 @@ DATABASES = {
 	'OPTIONS': {
 		'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
 	},
-	'HOST': '127.0.0.1',
+	'HOST': '127.0.0.1' ,
 	'PORT': '3306',
 	'USER': 'root',
 	'PASSWD': '',
