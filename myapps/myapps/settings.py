@@ -25,7 +25,7 @@ SECRET_KEY = 'w8-^m%o)^w8w(kj3ta6#0*sr!8y^df4=)07d-c-smg-ffr!$a('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-apps-shakil.c9users.io']
 
 
 # Application definition
@@ -130,3 +130,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = 'form:work_space'

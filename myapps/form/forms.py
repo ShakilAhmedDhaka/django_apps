@@ -4,11 +4,13 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, MultiField, HTML, Div, Submit, Button
 from crispy_forms.bootstrap import FormActions,InlineField
 from django.core.exceptions import ValidationError
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
 
-class SignUpSmall(forms.Form):
-	user = forms.CharField(
+class SignUpSmall(UserCreationForm):
+	username = forms.CharField(
 		label='',
 		max_length=100,
 		widget=forms.TextInput(attrs={'placeholder': 'Username','name':'user'}),
@@ -18,20 +20,21 @@ class SignUpSmall(forms.Form):
 		max_length=100,
 		widget=forms.TextInput(attrs={'placeholder': 'Email','name':'email'}),
 	)
-	passwd = forms.CharField(
+	password1 = forms.CharField(
 		label='',
 		max_length=100,
-		widget=forms.TextInput(attrs={'placeholder': 'Password','name':'passwd'}),
+		widget=forms.TextInput(attrs={'placeholder': 'Password','name':'password1'}),
 	)
-	conf_passwd = forms.CharField(
+	password2 = forms.CharField(
 		label='',
 		max_length=100,
-		widget=forms.TextInput(attrs={'placeholder': 'Confirm Password','name':'conf_passwd'}),
+		widget=forms.TextInput(attrs={'placeholder': 'Confirm Password','name':'password2'}),
 	)
 	
 	terms_cond = forms.BooleanField(
 		label = 'I agree to terms and conditions',
 	)
+	
 	
 
 	def __init__(self,*args,**kwargs):
@@ -48,10 +51,10 @@ class SignUpSmall(forms.Form):
 		self.helper.layout = Layout(
 			Fieldset(		
 				'',
-				'user',
+				'username',
 				'email',
-				'passwd',
-				'conf_passwd',
+				'password1',
+				'password2',
 				'terms_cond',
 			),
 			FormActions(
@@ -60,11 +63,49 @@ class SignUpSmall(forms.Form):
 			),
 		)
 		
+		class Meta:
+			model = User
+    		fields = ('username', 'email', 'password1', 'password2')
 
 		
 		
-
-
+		
+class SignIn(forms.Form):
+	username = forms.CharField(
+		label='',
+		max_length=100,
+		widget=forms.TextInput(attrs={'placeholder': 'Username','name':'user'}),
+	)
+	password = forms.CharField(
+		label='',
+		max_length=100,
+		widget=forms.TextInput(attrs={'placeholder': 'Password','name':'password'}),
+	)
+		
+	def __init__(self,*args,**kwargs):
+		super(SignIn,self).__init__(*args,**kwargs)
+		self.helper = FormHelper()
+		self.helper.form_method = 'POST'
+		self.helper.form_class = 'form-horizontal'
+		self.helper.form_id = 'loginForm'
+		self.helper.label_class='col-lg-2'
+		self.helper.field_class='col-lg-8 col-md-offset-2'
+		self.helper.layout = Layout(
+			Fieldset(		
+				'',
+				'username',
+				'password',
+			),
+			FormActions(
+ 	   			Submit('save', 'Sign in'),
+    			Button('cancel', 'Dont have an account? Sign Up')
+			),
+		)
+		
+		
+		
+		
+		
 
 class ExampleForm(forms.Form):
 	like_website = forms.TypedChoiceField(

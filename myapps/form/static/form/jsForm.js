@@ -10,7 +10,7 @@ $(document).ready(function () {
         errorClass: "my-error-class",
         validClass: "my-valid-class",
         rules: {
-            user: {
+            username: {
                 required: true,
                 minlength: 5,
                 alphanumeric : true
@@ -19,13 +19,13 @@ $(document).ready(function () {
                 required: true,
                 email: true
             },
-            passwd: {
+            password1: {
                 required: true,
                 minlength: 5,
             },
-            conf_passwd: {
+            password2: {
                 required: true,
-                equalTo: '#id_passwd',
+                equalTo: '#id_password1',
             },
             terms_cond: {
                 required: true,
@@ -34,16 +34,16 @@ $(document).ready(function () {
         
         // Specify the validation error messages
         messages: {
-            user: {
+            username: {
                 required: "Please enter user name",
                 alphanumeric: "username must be alphanumeric"
             },
             email: "Please enter a valid email address",
-            passwd: {
+            password1: {
                 required: "Please provide a password",
                 minlength: "Your password must be at least 5 characters long",
             },
-            conf_passwd: {
+            password2: {
                 required: "Please confirm your password",
                 equalTo: "Password mismatch",
             },
@@ -52,5 +52,8 @@ $(document).ready(function () {
         
         
     });
+    
+    
+   
     
 });
