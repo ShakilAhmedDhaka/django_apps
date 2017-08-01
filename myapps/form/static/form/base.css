@@ -1,0 +1,37 @@
+/* Fonts from Google Fonts - more at https://fonts.google.com */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700');
+
+body {
+    font-family:'Open Sans';
+}
+
+
+#legend_id{
+	color: #ffffff;
+	text-align:center;
+	font-family:'Open Sans';
+	font-size:4rem;
+}
+
+
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+
+/* form validation color change */
+.my-error-class {
+    color: #e7518f;  /* pink */
+}
+.my-valid-class {
+    color: #00CC00; /* green */
+}
+/* form validation color change */
+
+

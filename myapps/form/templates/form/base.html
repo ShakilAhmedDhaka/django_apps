@@ -1,27 +1,49 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>{% block title %}Django Simple Login{% endblock %}</title>
-</head>
-<body>
-  <header>
-    <h1>Django Simple Login</h1>
-    {% if user.is_authenticated %}
-      Hi {{ user.username }}!
-      <a href="{% url 'form:logout' %}">logout</a>
-    {% else %}
-      <a href="{% url 'form:login' %}">login</a>
-    {% endif %}
-  </header>
-  <hr>
-  <main>
-    {% block content %}
+ <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> {{ title }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    {% block styles %}
     {% endblock %}
-  </main>
-  <hr>
-  <footer>
-    <a href="http://simpleisbetterthancomplex.com">simpleisbetterthancomplex.com</a>
-  </footer>
-</body>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/additional-methods.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    {% block scripts %} 
+    {% endblock %}
+ </head>
+  <body>
+      {% include 'form/nav.html' %} 
+    <div class="jumbotron">
+      <div class='container'>
+        <div class='row'>
+          <div class='col-md-8 col-md-offset-2'>
+            
+            {% block header %}
+            {% endblock %}
+            
+            {% block legend %}
+            {% endblock %}
+            
+            {% block form %}
+	          {% endblock %}
+	          
+	          {% block test %}
+	          {% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+      {% block footer %}
+      {% endblock %}
+  </body>
 </html>
+ 

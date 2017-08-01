@@ -14,7 +14,7 @@ from .forms import SignUpSmall,ExampleForm,ButtonForm,SignIn
 
 
 def index(request):
-	return render(request,'form/nav.html',{'title':'Welcome','page':'welcome'})
+	return render(request,'form/welcome.html',{'title':'Welcome','page':'welcome'})
 
 
 
@@ -97,7 +97,7 @@ def signout(request):
 
 
 def work_space(request):
-	return render(request,'form/nav.html',{'title':'Work Space','page':'work_space'})
+	return render(request,'form/welcome.html',{'title':'Work Space','page':'work_space'})
 
 
 

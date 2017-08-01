@@ -1,12 +1,40 @@
 {% extends 'form/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}Login{% endblock %}
+{% block styles %}
 
-{% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
+{% endblock %}
+
+{% block form %}
+  <legend id="legend_id">Login</legend>
+    <form id="loginForm" class="form-horizontal" method="post" novalidate="novalidate">
+      {% csrf_token %}
+        <fieldset> 
+          <div id="div_id_username" class="form-group"> 
+            <div class="controls col-lg-8 col-md-offset-2"> 
+              <input type="text" name="username" maxlength="100" autofocus="" required="" placeholder="Username" class="textinput textInput form-control" id="id_username"> 
+            </div> 
+          </div> 
+  
+          <div id="div_id_password" class="form-group"> 
+            <div class="controls col-lg-8 col-md-offset-2"> 
+              <input type="password" name="password" maxlength="100" required="" placeholder="Password" class="textinput textInput form-control" id="id_password">
+            </div> 
+          </div> 
+        </fieldset>
+        <div class="form-group"> 
+          <div class="aab controls col-lg-2"></div> 
+        <div class="controls col-lg-8 col-md-offset-2"> 
+          <input type="submit" name="save" value="Sign In" class="btn btn-primary" id="submit-id-save">
+          <input type="button" name="cancel" value="Already have an account?" class="btn" id="button-id-cancel"> </div>
+        </div> 
+    </form>
+{% endblock %}
+
+{% block footer %}
+  <footer>
+    
+  </footer>
 {% endblock %}
