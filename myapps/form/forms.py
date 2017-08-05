@@ -6,6 +6,7 @@ from crispy_forms.bootstrap import FormActions,InlineField
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Profile
 
 
 
@@ -23,19 +24,19 @@ class SignUpSmall(UserCreationForm):
 	password1 = forms.CharField(
 		label='',
 		max_length=100,
-		widget=forms.TextInput(attrs={'placeholder': 'Password','name':'password1'}),
+		widget=forms.PasswordInput(attrs={'placeholder': 'Password','name':'password1'}),
 	)
 	password2 = forms.CharField(
 		label='',
 		max_length=100,
-		widget=forms.TextInput(attrs={'placeholder': 'Confirm Password','name':'password2'}),
+		widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password','name':'password2'}),
 	)
 	
-	terms_cond = forms.BooleanField(
-		label = 'I agree to terms and conditions',
-	)
+	# terms_cond = forms.BooleanField(
+	# 	label = 'I agree to terms and conditions',
+	# )
 	
-	
+
 
 	def __init__(self,*args,**kwargs):
 		super(SignUpSmall,self).__init__(*args,**kwargs)
@@ -65,9 +66,55 @@ class SignUpSmall(UserCreationForm):
 		
 		class Meta:
 			model = User
-    		fields = ('username', 'email', 'password1', 'password2')
+	    	fields = ('username', 'email', 'password1','password2')
+		
+	def save(self, commit=True):
+		user = super(SignUpSmall, self).save(commit=False)
+		user.email = self.cleaned_data["email"]
+		if commit:
+			user.save()
+		return user
+			
 
 		
+
+class ProfileForm(forms.ModelForm):
+    
+		
+    contact = forms.CharField(
+		label='',
+		max_length=100,
+		widget=forms.TextInput(attrs={'placeholder': 'Contact','name':'contact'}),
+		required=False,
+	)
+	
+    birth_date = forms.DateField(
+    	label='',
+    	widget=forms.DateTimeInput(attrs={'placeholder':'Date of Birth','name':'birth_date'}),
+    	required=False,
+    )
+    
+    location = forms.CharField(
+		label='',
+		max_length=100,
+		widget=forms.TextInput(attrs={'placeholder': 'Address','name':'location'}),
+		required=False,
+	)
+	
+    class Meta:
+		model = Profile
+		fields = ('contact', 'location', 'birth_date')	
+		
+    def __init__(self,*args,**kwargs):
+		super(ProfileForm,self).__init__(*args,**kwargs)
+		self.helper = FormHelper()
+		self.helper.form_method = 'POST'
+		self.helper.form_class = 'form-horizontal'
+		
+	
+
+		
+	
 		
 		
 class SignIn(forms.Form):

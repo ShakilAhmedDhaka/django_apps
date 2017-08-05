@@ -1,0 +1,16 @@
+{% extends 'form/base.html' %}
+{% load static %}
+
+{# including css #}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'form/base.css' %}" type="text/css" />
+{% endblock %}
+
+{% block test %}
+    {% if user.is_authenticated %}
+    Hi {{ user.email }}!
+    {% else %}
+      Welcome! Start your journey!
+    {% endif %}
+{% endblock %}
+

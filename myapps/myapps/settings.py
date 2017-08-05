@@ -131,4 +131,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+LOGIN_URL='form:login'
 LOGIN_REDIRECT_URL = 'form:work_space'

@@ -1,0 +1,62 @@
+{% extends 'form/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'form/base.css' %}" type="text/css" />
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{% static 'form/baseScript.js' %}"></script>
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block tab %}
+
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Account Information</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Personal Information</a></li>
+    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+      <br>
+      <form method="post" id='id_user_form' >
+      {% csrf_token %}
+      {{ user_form|crispy }}
+      <button type="submit" class="btn btn-success">Save Changes</button>
+      <button type="button" class="btn btn-warning">Cancel</button>
+      </form>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="profile">
+      <br>
+      <form method="post" id='id_profile_form' >
+      {% csrf_token %}
+      {{ profile_form|crispy }}
+      <button type="submit" class="btn btn-success">Save Changes</button>
+      <button type="button" class="btn btn-warning">Cancel</button>
+      </form>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="messages">...</div>
+    <div role="tabpanel" class="tab-pane" id="settings">
+      <!--<form method="post" id='id_password_form' >-->
+      <!--{% csrf_token %}-->
+      <!--{{ user_form|crispy }}-->
+      <!--<button type="submit" class="btn btn-success">Save Changes</button>-->
+      <!--<button type="button" class="btn btn-warning">Cancel</button>-->
+      <!--</form>-->
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
