@@ -25,13 +25,14 @@ SECRET_KEY = 'w8-^m%o)^w8w(kj3ta6#0*sr!8y^df4=)07d-c-smg-ffr!$a('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-apps-shakil.c9users.io']
+#ALLOWED_HOSTS = ['django-apps-shakil.c9users.io']
+#ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'widget_tweaks',
+   
     'crispy_forms',
     'form.apps.FormConfig',
     'django.contrib.admin',
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'myapps.urls'
@@ -65,10 +70,24 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',  # <--
+                'social_django.context_processors.login_redirect', # <--
             ],
         },
     },
 ]
+
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
 
 WSGI_APPLICATION = 'myapps.wsgi.application'
 
@@ -132,4 +151,23 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_URL='form:login'
+LOGOUT_URL = 'form:logout'
 LOGIN_REDIRECT_URL = 'form:work_space'
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = '313920865739676'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '4b0806b82772c9c7a5945da535d98dfe'  # App Secret
+
+
+SOCIAL_AUTH_GITHUB_KEY = 'cbdf15784faf467f4463'
+SOCIAL_AUTH_GITHUB_SECRET = 'b186a4f1594a50191805a8f20071001a11dfdf08'
+#SOCIAL_AUTH_GITHUB_REDIRECT_URI = 'http://localhost:8000/oauth/complete/github/'
+
+
+
+SOCIAL_AUTH_TWITTER_KEY = 'SSjKkcjxMaW885u6VlTqQr4Oa'
+SOCIAL_AUTH_TWITTER_SECRET = '0plBjaBU362QGcA9scpQVqpNO2bMk0IWlVzglckCZLDsYCFqo7'
+
+
+
+

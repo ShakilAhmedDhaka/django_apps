@@ -15,6 +15,11 @@ urlpatterns = [
 	url(r'^work_space/$',views.work_space,name='work_space'),
 	url(r'^profile/$',views.update_profile,name='profile'),
 	
+	url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
+	url(r'^admin/', admin.site.urls),
+
+
+
 	# ajax calls
 	url(r'^check_get_user/$', views.check_get_user, name='check_get_user'),
 	url(r'^profile/form/check_get_user/$', views.check_get_user, name='check_get_user'),

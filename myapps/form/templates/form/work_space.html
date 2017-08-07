@@ -8,7 +8,7 @@
 
 {% block test %}
     {% if user.is_authenticated %}
-    Hi {{ user.email }}!
+    Hi {{ user.username}}!, your email is {{user.email}}.
     {% else %}
       Welcome! Start your journey!
     {% endif %}
