@@ -6,9 +6,14 @@
 <link rel="stylesheet" href="{% static 'form/base.css' %}" type="text/css" />
 {% endblock %}
 
+{% block scripts %}
+<script type="text/javascript" src="{% static 'form/work_space.js' %}"></script>
+{% endblock %}
+
 {% block test %}
     {% if user.is_authenticated %}
-    Hi {{ user.username}}!, your email is {{user.email}}.
+    Hi {{ user.username}}!, your email is {{user.email}}. <br>
+    <div id='birthdate'>Your birthdate is: </div>
     {% else %}
       Welcome! Start your journey!
     {% endif %}

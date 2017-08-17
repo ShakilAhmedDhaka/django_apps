@@ -1,4 +1,4 @@
-#!/home/shakil/Web-dev/apps/env/bin/python
+#!/home/shakil/Webdev/django/django_apps/env/bin/python2
 from django.core import management
 
 if __name__ == "__main__":
